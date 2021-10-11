@@ -63,6 +63,21 @@ app.put('/api/courses/:id',(req,res)=>{
 })
 
 
+app.delete('/api/courses/:id',(req,res)=>{
+    //look up the course
+    const cours=courses.find(c=> c.id===parseInt(req.params.id))
+    // if not existing ,return 404
+  
+    if(!cours) res.status(404).send("The course for the given id was not found") //404 object not found
+     
+    //Delete
+     const index =courses.indexOf(cours)
+     courses.splice(index,1) //remove the index
+    //Return
+    res.send(cours)
+
+})
+
 
 app.get("/api/courses/:id",(req,res)=>{
    // res.send(req.params.id)
