@@ -1,7 +1,8 @@
+const Joi =require('joi')
 const express= require("express")
 const app =express()
 app.use(express.json())
-const Joi =require('joi')
+
 const courses=[
     {id:1,name:'courese1'},
     {id:2,name:'courese2'},
@@ -17,14 +18,14 @@ app.get("/api/courses",(req,res)=>{
 })
 
 app.post("/api/courses",(req,res)=>{
-    const schema={
-        name:Joi.string().min(3).required()
-    }
-    const result=Joi.ValidationError(req.body,schema)
-    console.log(result)
-    if(!req.body.name || req.body.name.length<3)
+    const schema = Joi.object({ name: Joi.string() .min(3) .required()
+        });
+        
+        const result = schema.validate(req.body);
+ 
+    if(result.error)
     {
-        res.status(400).send("Name is require and should be minimum 3 caracter")
+        res.status(400).send(result.error)
         return
     }
     const course={
