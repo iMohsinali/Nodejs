@@ -1,8 +1,15 @@
 const Joi =require('joi')
+const log=require('./logger')
+const auth=require('./authntication')
 const express= require("express")
-const app =express()
-app.use(express.json())
 
+const app =express()
+app.use(express.json()) //build in middleware
+app.use(log) //custom middleware
+app.use(auth) //custom middleware
+
+app.use(express.urlencoded({extended:true})) //build in middleware
+app.use(express.static('public'))
 const courses=[
     {id:1,name:'courese1'},
     {id:2,name:'courese2'},
