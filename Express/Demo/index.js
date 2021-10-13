@@ -1,10 +1,16 @@
 const Joi =require('joi')
 const log=require('./logger')
+const morgan =require('morgan')
 const auth=require('./authntication')
 const express= require("express")
 
 const app =express()
 app.use(express.json()) //build in middleware
+if(app.get('env')==='development')
+{
+  app.use(morgan('tiny'))
+  console.log("Morgan enabled")
+}
 app.use(log) //custom middleware
 app.use(auth) //custom middleware
 
