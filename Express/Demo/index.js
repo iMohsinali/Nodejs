@@ -1,3 +1,4 @@
+const config=require('config')
 const Joi =require('joi')
 const log=require('./logger')
 const morgan =require('morgan')
@@ -6,6 +7,10 @@ const express= require("express")
 
 const app =express()
 app.use(express.json()) //build in middleware
+//configration
+console.log("Application name:" + config.get('name'))
+console.log("mail server name:"  + config.get('mail.host'))
+console.log("mail server password:"  + config.get('mail.password'))
 if(app.get('env')==='development')
 {
   app.use(morgan('tiny'))
