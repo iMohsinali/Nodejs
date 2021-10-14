@@ -1,3 +1,6 @@
+const debug=require('debug')('app:startup')
+//for databse
+const db_dbugger=require('debug')('app:db')
 const config=require('config')
 const Joi =require('joi')
 const log=require('./logger')
@@ -14,7 +17,8 @@ console.log("mail server password:"  + config.get('mail.password'))
 if(app.get('env')==='development')
 {
   app.use(morgan('tiny'))
-  console.log("Morgan enabled")
+  debug("margan is enalbe")
+
 }
 app.use(log) //custom middleware
 app.use(auth) //custom middleware
