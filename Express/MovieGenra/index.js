@@ -1,7 +1,18 @@
 const express=require('express')
 const app=express();
+const morgan=require('morgan')
+const debug=require('debug')('app:startup')
+const config=require('config')
 const Joi=require('joi')
-app.use(express.json())
+app.use(express.json()) //middleware
+console.log(`The developemt is run by:${config.get('name')}`)
+console.log(`The developemt is host by:${config.get('host.mail')}`)
+console.log(`Cutsom:${config.get('mail.password')}`)
+if(app.get('env')=='development')
+{
+app.use(morgan('tiny'))
+debug("morgan is enabled...")
+}
 const Genres=
 [
     {type:'action'},
