@@ -45,6 +45,9 @@ async function createCourse()
 //and
 async function findcourse()
 {
+  const pagenumber=2
+  const pagesize=10
+  // api/course ?pagenmber= 2 & pagesize=10
     const result = await Course
     .find({author:'Mohsin',isPulished:true})
 
@@ -59,7 +62,8 @@ async function findcourse()
 //  .or([{author:'Mohsin'},{isPulished:true}])
  // .find({price:{$gt:10,$lt:20}}) //price is greater then 10 and less then 20
  // .find({price {$in:[10,20,30]}}) //price is 10 or 20 0r 30
-    .limit(10)
+    .skip((pagenumber-1)*pagesize)
+    .limit(pagesize)              //pagenation
     .sort({name:1})
     .select({name:1})
     console.log(result) 
