@@ -39,10 +39,16 @@ async function createCourse()
 //lte less then equal to
 //in      
 //nin
+
+// logical Operators
+//or
+//and
 async function findcourse()
 {
     const result = await Course
     .find({author:'Mohsin',isPulished:true})
+//  .find()
+//  .or([{author:'Mohsin'},{isPulished:true}])
  // .find({price:{$gt:10,$lt:20}}) //price is greater then 10 and less then 20
  // .find({price {$in:[10,20,30]}}) //price is 10 or 20 0r 30
     .limit(10)
