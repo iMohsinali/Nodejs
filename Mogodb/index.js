@@ -47,6 +47,14 @@ async function findcourse()
 {
     const result = await Course
     .find({author:'Mohsin',isPulished:true})
+
+    //Regular Expression
+    //first name is Mohsin end last may be different
+    //.find({author:/^Mohsin/i}) // i is used for case insansative
+      //first name may change end last Mohsin
+    //.find({author:/Mohsin$/i})
+      //when name came in middle
+    //.find({author:/.*Mohsin.*/i})
 //  .find()
 //  .or([{author:'Mohsin'},{isPulished:true}])
  // .find({price:{$gt:10,$lt:20}}) //price is greater then 10 and less then 20
