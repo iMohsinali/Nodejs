@@ -1,5 +1,6 @@
 
 const express=require('express')
+const Joi =require('joi')
 const router=express.Router();
 const courses=[
     {id:1,name:'courese1'},
@@ -81,4 +82,11 @@ router.get("/:id",(req,res)=>{
   if(!cours) res.status(404).send("The course for the given id was not found") //404 object not found
    res.send(cours)
 })
+
+function validation(course){
+    const schema = Joi.object({ name: Joi.string() .min(3) .required()
+    });
+    
+   return schema.validate(course);
+}
 module.exports=router
