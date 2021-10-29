@@ -19,6 +19,3 @@ Promise.race([p1,p2])
 .catch(err=>console.log("error:",err.message))
 
 
-setTimeout(()=>{
-            
-},2300)

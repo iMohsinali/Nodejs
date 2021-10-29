@@ -34,8 +34,8 @@ function  githubrepos(user)
     return new Promise((reslove,reject)=>{
         setTimeout(()=>{
             console.log("connectiong github repo")
-            //reslove(["repo1","repo2","repo3"])
-            reject(new Error("Counld not connect"))
+            reslove(["repo1","repo2","repo3"])
+            //reject(new Error("Counld not connect"))
         },2000)
     })
    
