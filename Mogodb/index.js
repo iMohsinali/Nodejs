@@ -75,6 +75,7 @@ async function findcourse()
     .select({name:1})
    
 }
+/*
 async function update(id){
  const course= await Course.findById(id)
  if(!course)
@@ -85,7 +86,27 @@ const result = await course.save()
 console.log(result)
 
 }
+*/
+async function update(id){
+  const result= await Course.update({_id:id},{
+    $set:{
+      author:"Mohsin",
+      isPulished:false
+
+    }
+  })
+
+ console.log(result)
+ 
+ }
 update("617b927573152712ec3b2416")
+
+async function remove(id){
+
+ const result= await Course.deleteOne({_id:id})
+console.log(result)  
+ }
+remove("617b927573152712ec3b2416")
 async function run()
 {
 const course=await findcourse()
