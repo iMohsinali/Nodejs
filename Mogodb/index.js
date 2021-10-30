@@ -21,7 +21,16 @@ const courseSchema = new mongoose.Schema({
         enum:['web','net','mobi']
 
     },
-    tags: [String],
+    tags: {
+      type:Array,
+      required:true,
+      validate:{
+        validator:function(v){
+          return v && v.length>0
+        },
+        message:"A course should have atleat one tag"
+      }
+    },
     date: {type:Date,default:Date.now},
     isPulished: Boolean,
     price:{type:Number,
@@ -40,7 +49,7 @@ async function createCourse()
         name:"Node",
         category:'net',
         author:'Mohsin',                //constructor
-        tags:['angular','Frontend'],
+        tags:[],
         isPulished:true,
         price:13
     })
@@ -57,7 +66,7 @@ async function createCourse()
 
      
 }
-//createCourse()
+createCourse()
 
 //Operators
 //eq equal to
