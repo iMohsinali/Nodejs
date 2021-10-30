@@ -11,12 +11,25 @@ mongoose.connect(db,{
      console.log("no connection")
  })
 const courseSchema = new mongoose.Schema({
-    name: String,
-    author: String,
+    name: {
+      type:String,
+      required:true,
+    },
+    category:{
+        type:String,
+        required:true,
+        enum:['web','net','mobi']
+
+    },
     tags: [String],
     date: {type:Date,default:Date.now},
-    isPulished: Boolean
-
+    isPulished: Boolean,
+    price:{type:Number,
+      min:10,
+      max:200,
+      required:function(){
+     return this.isPulished
+    }}
 
 })
 //This is class
@@ -24,14 +37,23 @@ const Course= mongoose.model('user',courseSchema)
 async function createCourse()
 {
     const course =new Course({            //This is object
-        name:'Angular Course',
+        name:"Node",
+        category:'net',
         author:'Mohsin',                //constructor
         tags:['angular','Frontend'],
-        isPulished:true
+        isPulished:true,
+        price:13
     })
     
+    try
+    {
      const result = await course.save()
-    
+     console.log(result)
+    }
+    catch(err)
+    {
+      console.log(err.message)
+    }
 
      
 }
