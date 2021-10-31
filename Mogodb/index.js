@@ -66,7 +66,8 @@ async function createCourse()
     }
     catch(err)
     {
-      console.log(err.message)
+      for(field in err.error)
+      console.log(err.error[field])
     }
 
      
